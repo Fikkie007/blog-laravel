@@ -14,15 +14,18 @@
                 Back To All My Posts
             </a>
 
-            <a href="" class="btn btn-warning">
+            <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn btn-warning">
                 <span data-feather="edit" class="align-text-bottom"></span>
                 Edit
             </a>
-
-            <a href="" class="btn btn-danger">
-                <span data-feather="x-circle" class="align-text-bottom"></span>
-                Delete
-            </a>
+            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline">
+                @method('delete')
+                @csrf
+                <button class="btn btn-danger border-0" onclick="return confirm('Are You Sure delete this post ? ')">
+                  <span data-feather="x-circle"></span>
+                  Delete
+                </button>
+              </form>
 <br><br>
             <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}" class="card-img-top" alt="{{ $post->category->name }}" class="img-fluid mt-3">
 

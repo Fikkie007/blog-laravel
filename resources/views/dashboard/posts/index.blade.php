@@ -6,12 +6,12 @@
 </div>
 
 @if (session()->has('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success col-lg-11">
       {{ session('success') }}
     </div>
 @endif
 
-<div class="table-responsive col-lg-12">
+<div class="table-responsive col-lg-11">
 
   <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create New Post</a>
     <table class="table table-striped table-sm">
@@ -34,12 +34,17 @@
             <a href="/dashboard/posts/{{ $p->slug }}" class="badge bg-info">
                 <span data-feather="eye"></span>
             </a>
-            <a href="" class="badge bg-warning">
+            <a href="/dashboard/posts/{{ $p->slug }}/edit" class="badge bg-warning">
                 <span data-feather="edit"></span>
             </a>
-            <a href="" class="badge bg-danger">
+
+            <form action="/dashboard/posts/{{ $p->slug }}" method="POST" class="d-inline">
+              @method('delete')
+              @csrf
+              <button class="badge bg-danger border-0" onclick="return confirm('Are You Sure delete this post ? ')">
                 <span data-feather="x-circle"></span>
-            </a>
+              </button>
+            </form>
           </td>
         </tr>
 
