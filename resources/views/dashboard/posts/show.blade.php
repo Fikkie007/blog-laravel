@@ -31,7 +31,7 @@
         </article>
 
         <br><br>
-        <a href="/blog" class="display-block mt-3">Back To Post</a>
+        <a href="/dashboard" class="display-block mt-3">Back To Post</a>
         
         </div>
     </div>
