@@ -4,7 +4,7 @@
 
 <h1 class="mb-3 text-center">{{ $title }}</h1>
 
-<div class="row justify-content-center mb-3">
+<div class="row justify-content-center mb-3"> 
   <div class="col-md-6">
     <form action="/blog">
       @if (request('category'))
@@ -26,9 +26,13 @@
 @if ($posts->count())
     
 <div class="card mb-3">
-
-    <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
-
+            @if ($posts[0]->image)
+            <div style="max-height: 400px; overflow: hidden;">
+                <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top" alt="{{ $posts[0]->category->name }}" class="img-fluid">
+            </div>    
+            @else
+            <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top" alt="{{ $posts[0]->category->name }}">
+            @endif
     <div class="card-body text-center">
 
       <h3 class="card-title">
@@ -60,7 +64,11 @@
                     {{ $p->category->name }}
                 </a>
                 </div>
+                @if ($p->image)
+                    <img src="{{ asset('storage/' . $p->image) }}" class="card-img-top" alt="{{ $p->category->name }}" class="img-fluid">
+                @else
                 <img src="https://source.unsplash.com/500x400?{{ $p->category->name }}" class="card-img-top" alt="{{ $p->category->name }}">
+                @endif
                 <div class="card-body">
                   <h5 class="card-title"> {{ $p->title }}</h5>
                   <small class="text-muted">

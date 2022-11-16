@@ -7,7 +7,7 @@
 </div>
 
 <div class="col-lg-8">
-<form method="POST" action="/dashboard/posts" class="mb-5">
+<form method="POST" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
@@ -38,6 +38,17 @@
         <option value="{{ $c->id }}" {{ old('category_id') == $c->id ? 'selected' : '' }}>{{ $c->name }}</option>
         @endforeach
       </select>
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Post Image</label>
+      <input class="form-control @error('image')
+      is-invalid
+  @enderror" type="file" id="image" name="image">
+  @error('image')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+      @enderror
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">Body</label>
